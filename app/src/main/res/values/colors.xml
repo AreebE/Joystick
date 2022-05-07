@@ -7,4 +7,14 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="joystick">#045C1A</color>
+    <color name="joystickBorder">#043A12</color>
+    <color name="joystickBorder_light">#76BD7F</color>
+    <color name="control_border">#D3D3D3</color>
+    <color name="xAxis">#FF8484</color>
+    <color name="yAxis">#90D2FD</color>
+
+    <color name="disconnectedStatus">#CACACA</color>
+    <color name="connectedStatus">#FDE9A9</color>
+    <!--    <<color name=""-->
 </resources>

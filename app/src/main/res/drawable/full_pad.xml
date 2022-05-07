@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <rotate android:fromDegrees="90"
+            android:toDegrees="90" android:visible="true">
+            <shape android:shape="line">
+                <stroke android:color="@color/yAxis" android:width="10dp"/>
+            </shape>
+        </rotate>
+    </item>
+
+    <item>
+        <shape android:shape="line" >
+            <stroke android:color="@color/xAxis" android:width="10dp"/>
+        </shape>
+    </item>
+    <item android:gravity="center">
+        <shape android:shape="oval">
+            <size android:width="40dp" android:height="40dp"/>
+            <solid android:color="@color/control_border"/>
+        </shape>
+    </item>
+
+    <item>
+        <shape android:shape="rectangle" android:useLevel="false">
+            <size android:width="350dp" android:height="350dp"/>
+<!--            <solid android:color="@color/control_border"/>-->
+            <stroke android:width="10dp" android:color="@color/control_border"/>
+        </shape>
+    </item>
+
+
+</layer-list>

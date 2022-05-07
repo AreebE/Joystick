@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="startOfStick">50dp</dimen>
+    <dimen name="joystick_radius">75dp</dimen>
+    <dimen name="padEnd_joystick">80dp</dimen>
+    <dimen name="halfwayOfEdge_joystick">90dp</dimen>
+    <dimen name="nearEdge_joystick">95dp</dimen>
+    <dimen name="defaultMargin">162.5dp</dimen>
+    <dimen name="padMargin">25dp</dimen>
+    <dimen name="padSize">375dp</dimen>
+
+</resources>
