@@ -1,8 +1,13 @@
 package com.example.joystick;
 
+import android.app.Activity;
+import android.bluetooth.BluetoothAdapter;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -137,7 +142,7 @@ public class JoystickFragment extends Fragment {
                 currentLocation[1] = (relativeTop - midPointOfJoystick) / midPointOfJoystick;
                 xArrow.setRatio(currentLocation[0]);
                 yArrow.setRatio(currentLocation[1]);
-                updatePoints();
+                updatePoints(currentLocation);
 //                Log.d(TAG, "Final results -- " + params.leftMargin + " , " + params.topMargin);
 //
 //                Log.d(TAG, findViewById(R.id.mainPad).getWidth() + ", " + findViewById(R.id.mainPad).getHeight());
@@ -161,7 +166,9 @@ public class JoystickFragment extends Fragment {
         switch (item.getItemId())
         {
             case R.id.connect:
-
+                DialogFragment fragment = FindDeviceFragment.newInstance();
+                fragment.setTargetFragment(this, FindDeviceFragment.DEVICE_LOGIN);
+                fragment.show(getFragmentManager(), null);
                 break;
             case R.id.connectionStatus:
 
@@ -170,8 +177,41 @@ public class JoystickFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-    public void updatePoints()
-    {
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode)
+        {
+            case FindDeviceFragment.DEVICE_LOGIN:
+                if (resultCode == Activity.RESULT_OK)
+                {
+                    String address = data.getStringExtra(FindDeviceFragment.DEVICE_ADDRESS_KEY);
+                    if (connectionManager != null)
+                    {
+                        connectionManager.closeConnection();
+                    }
+                    this.connectionManager = new BluetoothManager(BluetoothAdapter.getDefaultAdapter(), address);
+                    this.connectionManager.openConnection();
+                }
+                break;
+        }
+    }
 
+    public void updatePoints(double[] data)
+    {
+        if (connectionManager != null)
+        {
+            connectionManager.sendData(data);
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (connectionManager != null)
+        {
+            connectionManager.closeConnection();
+
+        }
     }
 }
